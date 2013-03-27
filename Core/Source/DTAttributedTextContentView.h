@@ -6,7 +6,7 @@
 //  Copyright 2011 Drobnik.com. All rights reserved.
 //
 
-#import <CoreText/CoreText.h>
+#import "DTCoreTextLayoutFrame.h"
 
 @class DTAttributedTextContentView;
 @class DTCoreTextLayoutFrame;
@@ -115,6 +115,8 @@ typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
  - set a layout frame
  
  The first you would normally use, the second you would use if you are layouting a larger text and then simply want to display individual parts (e.g. pages from an e-book) in a content view.
+ 
+ DTAttributedTextContentView is designed to be used as the content view inside a DTAttributedTextView and thus sizes its intrinsicContentSize always to be the same as the width of the set frame. Use DTAttributedLabel if you don't require scrolling behavior.
  */
 
 @interface DTAttributedTextContentView : UIView
@@ -186,15 +188,6 @@ typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
  */
 @property (atomic, strong) DTCoreTextLayoutFrame *layoutFrame;
 
-
-/**
- The dispatch queue that is used to serialize layouting actions
- */
-#if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong) dispatch_queue_t layoutQueue;  // GCD objects use ARC
-#else
-@property (nonatomic, assign) dispatch_queue_t layoutQueue;  // GCD objects don't use ARC
-#endif
 
 /**
  @name Working with Custom Subviews
@@ -312,6 +305,23 @@ typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
  @returns The `CALayer` subclass that new instances are using
  */
 + (Class)layerClass;
+
+@end
+
+
+/**
+ Methods for drawing the content view
+ */
+@interface DTAttributedTextContentView (Drawing)
+
+/**
+ Creates an image from a part of the receiver's content view
+ @param bounds The bounds of the content to draw
+ @param options The drawing options to apply when drawing
+ @see [DTCoreTextLayoutFrame drawInContext:options:] for a list of available drawing options
+ @returns A `UIImage` with the specified content
+ */
+- (UIImage *)contentImageWithBounds:(CGRect)bounds options:(DTCoreTextLayoutFrameDrawingOptions)options;
 
 @end
 
