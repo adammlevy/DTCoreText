@@ -8,6 +8,12 @@
 
 #import "DemoSnippetsViewController.h"
 #import "DemoTextViewController.h"
+<<<<<<< HEAD
+#import "ALVocabItem.h"
+#import "ALAttributeItem.h"
+=======
+#import "DemoAboutViewController.h"
+>>>>>>> 39855289c354e9d61d6425d5efdada62d290b113
 
 // identifier for cell reuse
 NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseIdentifier";
@@ -58,11 +64,21 @@ NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseId
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
 	[self.tableView registerClass:[DTAttributedTextCell class] forCellReuseIdentifier:AttributedTextCellReuseIdentifier];
 #endif
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStyleBordered target:self action:@selector(showAbout:)];
 }
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
+}
+
+#pragma mark - Actions
+
+- (void)showAbout:(id)sender
+{
+	DemoAboutViewController *aboutViewController = [[DemoAboutViewController alloc] init];
+	[self.navigationController pushViewController:aboutViewController animated:YES];
 }
 
 #pragma mark UITableViewDataSource
@@ -150,6 +166,25 @@ NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseId
 	viewController.fileName = [rowSnippet objectForKey:@"File"];
 	viewController.baseURL = [NSURL URLWithString:[rowSnippet  objectForKey:@"BaseURL"]];
 	
+	NSString *chapter;
+	if (indexPath.row == 0) {
+		chapter = @"Chapter1";
+	} else if (indexPath.row == 1) {
+		chapter = @"Chapter1LessonII";
+	}
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:chapter ofType:@"plist"];
+	NSDictionary *plistDict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+	NSMutableDictionary *vocabulary = [NSMutableDictionary dictionary];
+	
+	[plistDict enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+		ALVocabItem *vocabItem = [[ALVocabItem alloc] init];
+		NSDictionary *word = (NSDictionary *)object;
+		vocabItem.word = [word objectForKey:@"word"];
+		vocabItem.translation = [word objectForKey:@"translation"];
+		vocabItem.pinyin = [word objectForKey:@"pinyin"];
+		[vocabulary setObject:vocabItem forKey:key];
+	}];
+	viewController.vocabulary = vocabulary;
 	[self.navigationController pushViewController:viewController animated:YES];
 }
 

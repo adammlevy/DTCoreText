@@ -28,6 +28,13 @@
 		1203A2331702AFE80058FAC7 /* pause_play_stop_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 1203A22C1702AFE80058FAC7 /* pause_play_stop_black.png */; };
 		1203A2341702AFE80058FAC7 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 1203A22D1702AFE80058FAC7 /* pause.png */; };
 		1203A2351702AFE80058FAC7 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 1203A22E1702AFE80058FAC7 /* play.png */; };
+		1203A24A1702B0780058FAC7 /* ALAttributeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A23F1702B0780058FAC7 /* ALAttributeItem.m */; };
+		1203A24B1702B0780058FAC7 /* ALTranslationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2411702B0780058FAC7 /* ALTranslationView.m */; };
+		1203A24C1702B0780058FAC7 /* ALVocabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2431702B0780058FAC7 /* ALVocabItem.m */; };
+		1203A24D1702B0780058FAC7 /* ALVocabItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2451702B0780058FAC7 /* ALVocabItemCell.m */; };
+		1203A24E1702B0780058FAC7 /* ALVocabItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2461702B0780058FAC7 /* ALVocabItemCell.xib */; };
+		1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2481702B0780058FAC7 /* ALVocabListViewController.m */; };
+		1203A2501702B0780058FAC7 /* ALVocabListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -745,6 +752,18 @@
 		1203A22C1702AFE80058FAC7 /* pause_play_stop_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_play_stop_black.png; sourceTree = "<group>"; };
 		1203A22D1702AFE80058FAC7 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		1203A22E1702AFE80058FAC7 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		1203A23E1702B0780058FAC7 /* ALAttributeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAttributeItem.h; sourceTree = "<group>"; };
+		1203A23F1702B0780058FAC7 /* ALAttributeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAttributeItem.m; sourceTree = "<group>"; };
+		1203A2401702B0780058FAC7 /* ALTranslationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTranslationView.h; sourceTree = "<group>"; };
+		1203A2411702B0780058FAC7 /* ALTranslationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALTranslationView.m; sourceTree = "<group>"; };
+		1203A2421702B0780058FAC7 /* ALVocabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVocabItem.h; sourceTree = "<group>"; };
+		1203A2431702B0780058FAC7 /* ALVocabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVocabItem.m; sourceTree = "<group>"; };
+		1203A2441702B0780058FAC7 /* ALVocabItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVocabItemCell.h; sourceTree = "<group>"; };
+		1203A2451702B0780058FAC7 /* ALVocabItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVocabItemCell.m; sourceTree = "<group>"; };
+		1203A2461702B0780058FAC7 /* ALVocabItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALVocabItemCell.xib; sourceTree = "<group>"; };
+		1203A2471702B0780058FAC7 /* ALVocabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVocabListViewController.h; sourceTree = "<group>"; };
+		1203A2481702B0780058FAC7 /* ALVocabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVocabListViewController.m; sourceTree = "<group>"; };
+		1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALVocabListViewController.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* RTDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1062,6 +1081,25 @@
 			name = Chinese;
 			sourceTree = "<group>";
 		};
+		1203A23D1702B0370058FAC7 /* Chinese */ = {
+			isa = PBXGroup;
+			children = (
+				1203A23E1702B0780058FAC7 /* ALAttributeItem.h */,
+				1203A23F1702B0780058FAC7 /* ALAttributeItem.m */,
+				1203A2401702B0780058FAC7 /* ALTranslationView.h */,
+				1203A2411702B0780058FAC7 /* ALTranslationView.m */,
+				1203A2421702B0780058FAC7 /* ALVocabItem.h */,
+				1203A2431702B0780058FAC7 /* ALVocabItem.m */,
+				1203A2441702B0780058FAC7 /* ALVocabItemCell.h */,
+				1203A2451702B0780058FAC7 /* ALVocabItemCell.m */,
+				1203A2461702B0780058FAC7 /* ALVocabItemCell.xib */,
+				1203A2471702B0780058FAC7 /* ALVocabListViewController.h */,
+				1203A2481702B0780058FAC7 /* ALVocabListViewController.m */,
+				1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */,
+			);
+			name = Chinese;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1276,6 +1314,7 @@
 		A788CA3114863EF100E1AFD9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1203A23D1702B0370058FAC7 /* Chinese */,
 				A788CA3314863EF100E1AFD9 /* CoreTextDemoAppDelegate.h */,
 				A788CA3414863EF100E1AFD9 /* CoreTextDemoAppDelegate.m */,
 				A788CA3514863EF100E1AFD9 /* DemoSnippetsViewController.h */,
@@ -1972,6 +2011,8 @@
 				1203A2331702AFE80058FAC7 /* pause_play_stop_black.png in Resources */,
 				1203A2341702AFE80058FAC7 /* pause.png in Resources */,
 				1203A2351702AFE80058FAC7 /* play.png in Resources */,
+				1203A24E1702B0780058FAC7 /* ALVocabItemCell.xib in Resources */,
+				1203A2501702B0780058FAC7 /* ALVocabListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2125,6 +2166,11 @@
 				A788CA5114863EF100E1AFD9 /* DemoSnippetsViewController.m in Sources */,
 				A788CA5214863EF100E1AFD9 /* DemoTextViewController.m in Sources */,
 				A788CA5314863EF100E1AFD9 /* main.m in Sources */,
+				1203A24A1702B0780058FAC7 /* ALAttributeItem.m in Sources */,
+				1203A24B1702B0780058FAC7 /* ALTranslationView.m in Sources */,
+				1203A24C1702B0780058FAC7 /* ALVocabItem.m in Sources */,
+				1203A24D1702B0780058FAC7 /* ALVocabItemCell.m in Sources */,
+				1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

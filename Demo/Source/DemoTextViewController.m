@@ -13,6 +13,10 @@
 #import "DTVersion.h"
 #import "DTTiledLayerWithoutFade.h"
 
+#import "ALTranslationView.h"
+
+#import "ALVocabListViewController.h"
+
 @interface DemoTextViewController ()
 - (void)_segmentedControlChanged:(id)sender;
 
@@ -21,6 +25,9 @@
 - (void)debugButton:(UIBarButtonItem *)sender;
 
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
+@property (nonatomic, strong) ALTranslationView *currentTranslationView;
+
+@property (nonatomic, strong) UIPopoverController *vocabPopoverController;
 
 @end
 
@@ -64,8 +71,9 @@
 		[_segmentedControl addTarget:self action:@selector(_segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
 		self.navigationItem.titleView = _segmentedControl;	
 		
-		UIBarButtonItem *debug = [[UIBarButtonItem alloc] initWithTitle:@"Debug Frames" style:UIBarButtonItemStyleBordered target:self action:@selector(debugButton:)];
-		NSArray *toolbarItems = [NSArray arrayWithObject:debug];
+		UIBarButtonItem *vocab = [[UIBarButtonItem alloc] initWithTitle:@"Vocab" style:UIBarButtonItemStyleBordered target:self action:@selector(vocabButtonPressed:)];
+		
+		NSArray *toolbarItems = [NSArray arrayWithObjects:vocab, nil];
 		[self setToolbarItems:toolbarItems];
 	}
 	return self;
@@ -92,7 +100,7 @@
 	
 	// Create chars view
 	_charsView = [[UITextView alloc] initWithFrame:frame];
-	_charsView.editable = NO;
+	_charsView.editable = YES;
 	_charsView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:_charsView];
 	
@@ -154,7 +162,7 @@
 	};
 	
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-							 @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, callBackBlock, DTWillFlushBlockCallBack, nil];
+							 @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
 	
 	if (useiOS6Attributes)
 	{
@@ -174,7 +182,7 @@
 	_textView.frame = bounds;
 
 	// Display string
-	//_textView.shouldDrawLinks = NO; // we draw them in DTLinkButton
+	_textView.shouldDrawLinks = NO; // we draw them in DTLinkButton
 	_textView.attributedString = [self _attributedStringForSnippetUsingiOS6Attributes:NO];
 	
 	[self _segmentedControlChanged:nil];
@@ -298,6 +306,7 @@
 
 - (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
 {
+	NSLog(@"viewForString: %@",string);
 	NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
 	
 	NSURL *URL = [attributes objectForKey:DTLinkAttribute];
@@ -309,20 +318,13 @@
 	button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
 	button.GUID = identifier;
 	
-	// we draw the contents ourselves
-	button.attributedString = string;
+	// get image with normal link text
+	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+	[button setImage:normalImage forState:UIControlStateNormal];
 	
-	// make a version with different text color
-	NSMutableAttributedString *highlightedString = [string mutableCopy];
-	
-	NSRange range = NSMakeRange(0, highlightedString.length);
-	
-	NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:(__bridge id)[UIColor redColor].CGColor forKey:(id)kCTForegroundColorAttributeName];
-	
-	
-	[highlightedString addAttributes:highlightedAttributes range:range];
-	
-	button.highlightedAttributedString = highlightedString;
+	// get image for highlighted link text
+	UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+	[button setImage:highlightImage forState:UIControlStateHighlighted];
 	
 	// use normal push action for opening URL
 	[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
@@ -428,7 +430,19 @@
 			// NOTE: this is a hack, you probably want to use your own image view and touch handling
 			// also, this treats an image with a hyperlink by itself because we don't have the GUID of the link parts
 			imageView.userInteractionEnabled = YES;
-			DTLinkButton *button = (DTLinkButton *)[self attributedTextContentView:attributedTextContentView viewForLink:attachment.hyperLinkURL identifier:attachment.hyperLinkGUID frame:imageView.bounds];
+			
+			DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:imageView.bounds];
+			button.URL = attachment.hyperLinkURL;
+			button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+			button.GUID = attachment.hyperLinkGUID;
+			
+			// use normal push action for opening URL
+			[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+			
+			// demonstrate combination with long press
+			UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
+			[button addGestureRecognizer:longPress];
+			
 			[imageView addSubview:button];
 		}
 		
@@ -436,7 +450,6 @@
 	}
 	else if (attachment.contentType == DTTextAttachmentTypeIframe)
 	{
-		frame.origin.x += 50;
 		DTWebVideoView *videoView = [[DTWebVideoView alloc] initWithFrame:frame];
 		videoView.attachment = attachment;
 		
@@ -460,7 +473,8 @@
 
 - (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
 {
-	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,1,1) cornerRadius:10];
+	
+	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,10,10) cornerRadius:10];
 
 	CGColorRef color = [textBlock.backgroundColor CGColor];
 	if (color)
@@ -483,26 +497,18 @@
 
 - (void)linkPushed:(DTLinkButton *)button
 {
-	NSURL *URL = button.URL;
+	NSLog(@"stringSelected: %@",button.attributedString.string);
 	
-	if ([[UIApplication sharedApplication] canOpenURL:[URL absoluteURL]])
-	{
-		[[UIApplication sharedApplication] openURL:[URL absoluteURL]];
-	}
-	else 
-	{
-		if (![URL host] && ![URL path])
-		{
-		
-			// possibly a local anchor link
-			NSString *fragment = [URL fragment];
-			
-			if (fragment)
-			{
-				[_textView scrollToAnchorNamed:fragment animated:NO];
-			}
-		}
-	}
+	ALVocabItem *vocabItem = [_vocabulary objectForKey:button.attributedString.string];
+	ALTranslationView *translation = [[ALTranslationView alloc] initWithVocabItem:vocabItem wordFrame:button.frame];
+	[button addSubview:translation];
+	
+	// remove view before showing new one
+	if (self.currentTranslationView)
+		[self.currentTranslationView removeFromSuperview];
+	
+	self.currentTranslationView = translation;
+	
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -529,10 +535,34 @@
 	}
 }
 
-- (void)debugButton:(UIBarButtonItem *)sender
-{
-	[DTCoreTextLayoutFrame setShouldDrawDebugFrames:![DTCoreTextLayoutFrame shouldDrawDebugFrames]];
-	[_textView.attributedTextContentView setNeedsDisplay];
+- (void)vocabButtonPressed:(UIBarButtonItem *)sender {
+	if (!_vocabPopoverController) {
+		ALVocabListViewController *vocabListVC = [[ALVocabListViewController alloc] initWithNibName:@"ALVocabListViewController" bundle:nil];
+		vocabListVC.vocabList = self.vocabulary.allValues;
+	
+		UIPopoverController* aPopover = [[UIPopoverController alloc]
+										 initWithContentViewController:vocabListVC];
+		aPopover.delegate = self;
+	
+		// Store the popover in a custom property for later use.
+		self.vocabPopoverController = aPopover;
+	
+		[self.vocabPopoverController presentPopoverFromBarButtonItem:sender
+								   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	} else {
+		[_vocabPopoverController dismissPopoverAnimated:YES];
+		self.vocabPopoverController = nil;
+	}
+}
+
+#pragma mark UIPopoverDelegate 
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+	return YES;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+	self.vocabPopoverController = nil;
 }
 
 #pragma mark DTLazyImageViewDelegate
