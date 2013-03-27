@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>是</key>
+	<dict>
+		<key>word</key>
+		<string>是</string>
+		<key>translation</key>
+		<string>to be</string>
+		<key>pinyin</key>
+		<string>shì</string>
+	</dict>
+	<key>老师</key>
+	<dict>
+		<key>word</key>
+		<string>老师</string>
+		<key>translation</key>
+		<string>teacher</string>
+		<key>pinyin</key>
+		<string>lǎoshī</string>
+	</dict>
+	<key>吗</key>
+	<dict>
+		<key>word</key>
+		<string>吗</string>
+		<key>translation</key>
+		<string>(a particle)</string>
+		<key>pinyin</key>
+		<string>ma</string>
+	</dict>
+	<key>不</key>
+	<dict>
+		<key>word</key>
+		<string>不</string>
+		<key>translation</key>
+		<string>not; no</string>
+		<key>pinyin</key>
+		<string>bù</string>
+	</dict>
+	<key>学生</key>
+	<dict>
+		<key>word</key>
+		<string>学生</string>
+		<key>translation</key>
+		<string>student</string>
+		<key>pinyin</key>
+		<string>xuésheng</string>
+	</dict>
+	<key>也</key>
+	<dict>
+		<key>word</key>
+		<string>也</string>
+		<key>translation</key>
+		<string>too; also</string>
+		<key>pinyin</key>
+		<string>yě</string>
+	</dict>
+	<key>中国人</key>
+	<dict>
+		<key>word</key>
+		<string>中国人</string>
+		<key>translation</key>
+		<string>Chinese people/person</string>
+		<key>pinyin</key>
+		<string>Zhōngguórén</string>
+	</dict>
+	<key>美国人</key>
+	<dict>
+		<key>word</key>
+		<string>美国人</string>
+		<key>translation</key>
+		<string>American people/person</string>
+		<key>pinyin</key>
+		<string>Měiguórén</string>
+	</dict>
+</dict>
+</plist>

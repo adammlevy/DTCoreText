@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>你好</key>
+	<dict>
+		<key>word</key>
+		<string>你好</string>
+		<key>translation</key>
+		<string>hello</string>
+		<key>pinyin</key>
+		<string>nǐhǎo</string>
+	</dict>
+	<key>先生</key>
+	<dict>
+		<key>word</key>
+		<string>先生</string>
+		<key>translation</key>
+		<string>Mr</string>
+		<key>pinyin</key>
+		<string>xiān sheng</string>
+	</dict>
+	<key>小姐</key>
+	<dict>
+		<key>word</key>
+		<string>小姐</string>
+		<key>translation</key>
+		<string>Miss; young lady</string>
+		<key>pinyin</key>
+		<string>xiǎo jie</string>
+	</dict>
+	<key>请问</key>
+	<dict>
+		<key>word</key>
+		<string>请问</string>
+		<key>translation</key>
+		<string>May I ask...</string>
+		<key>pinyin</key>
+		<string>qǐng wèn</string>
+	</dict>
+	<key>您</key>
+	<dict>
+		<key>word</key>
+		<string>您</string>
+		<key>translation</key>
+		<string>you (polite)</string>
+		<key>pinyin</key>
+		<string>nín</string>
+	</dict>
+	<key>贵姓</key>
+	<dict>
+		<key>word</key>
+		<string>贵姓</string>
+		<key>translation</key>
+		<string>What is your honorable surname?</string>
+		<key>pinyin</key>
+		<string>guì xìng</string>
+	</dict>
+	<key>我</key>
+	<dict>
+		<key>word</key>
+		<string>我</string>
+		<key>translation</key>
+		<string>I; me</string>
+		<key>pinyin</key>
+		<string>wǒ</string>
+	</dict>
+	<key>呢</key>
+	<dict>
+		<key>word</key>
+		<string>呢</string>
+		<key>translation</key>
+		<string>(a particle)</string>
+		<key>pinyin</key>
+		<string>ne</string>
+	</dict>
+	<key>叫</key>
+	<dict>
+		<key>word</key>
+		<string>叫</string>
+		<key>translation</key>
+		<string>to be called</string>
+		<key>pinyin</key>
+		<string>jiào</string>
+	</dict>
+	<key>什么</key>
+	<dict>
+		<key>word</key>
+		<string>什么</string>
+		<key>translation</key>
+		<string>what</string>
+		<key>pinyin</key>
+		<string>shén me</string>
+	</dict>
+	<key>名字</key>
+	<dict>
+		<key>word</key>
+		<string>名字</string>
+		<key>translation</key>
+		<string>name</string>
+		<key>pinyin</key>
+		<string>míng zi</string>
+	</dict>
+	<key>王朋</key>
+	<dict>
+		<key>word</key>
+		<string>王朋</string>
+		<key>translation</key>
+		<string>(a person&apos;s name)</string>
+		<key>pinyin</key>
+		<string>Wáng Péng</string>
+	</dict>
+	<key>李友</key>
+	<dict>
+		<key>word</key>
+		<string>李友</string>
+		<key>translation</key>
+		<string>(a person&apos;s name)</string>
+		<key>pinyin</key>
+		<string>Lǐ Yǒu</string>
+	</dict>
+</dict>
+</plist>
