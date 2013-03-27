@@ -315,11 +315,7 @@
 	button.URL = URL;
 	button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
 	button.GUID = identifier;
-	
-<<<<<<< HEAD
-	button.attributedString = string;
-	
-=======
+		
 	// get image with normal link text
 	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
 	[button setImage:normalImage forState:UIControlStateNormal];
@@ -328,7 +324,6 @@
 	UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
 	[button setImage:highlightImage forState:UIControlStateHighlighted];
 	
->>>>>>> upstream/master
 	// use normal push action for opening URL
 	[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
 	
@@ -476,7 +471,6 @@
 
 - (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
 {
-	
 	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(frame,10,10) cornerRadius:10];
 
 	CGColorRef color = [textBlock.backgroundColor CGColor];
@@ -500,18 +494,18 @@
 
 - (void)linkPushed:(DTLinkButton *)button
 {
-	NSLog(@"stringSelected: %@",button.attributedString.string);
-	
-	ALVocabItem *vocabItem = [_vocabulary objectForKey:button.attributedString.string];
-	ALTranslationView *translation = [[ALTranslationView alloc] initWithVocabItem:vocabItem wordFrame:button.frame];
-	[button addSubview:translation];
-	
-	// remove view before showing new one
-	if (self.currentTranslationView)
-		[self.currentTranslationView removeFromSuperview];
-	
-	self.currentTranslationView = translation;
-	
+//	NSLog(@"stringSelected: %@",button.attributedString.string);
+//	
+//	ALVocabItem *vocabItem = [_vocabulary objectForKey:button.attributedString.string];
+//	ALTranslationView *translation = [[ALTranslationView alloc] initWithVocabItem:vocabItem wordFrame:button.frame];
+//	[button addSubview:translation];
+//	
+//	// remove view before showing new one
+//	if (self.currentTranslationView)
+//		[self.currentTranslationView removeFromSuperview];
+//	
+//	self.currentTranslationView = translation;
+//	
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
