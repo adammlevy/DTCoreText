@@ -162,7 +162,7 @@
 	};
 	
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption, [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-							 @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, nil];
+							 @"Times New Roman", DTDefaultFontFamily,  @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkColor, callBackBlock, DTWillFlushBlockCallBack, nil];
 	
 	if (useiOS6Attributes)
 	{
@@ -319,12 +319,12 @@
 	button.GUID = identifier;
 	
 	// get image with normal link text
-	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
-	[button setImage:normalImage forState:UIControlStateNormal];
+	//UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+	//[button setImage:normalImage forState:UIControlStateNormal];
 	
 	// get image for highlighted link text
-	UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
-	[button setImage:highlightImage forState:UIControlStateHighlighted];
+	//UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+	//[button setImage:highlightImage forState:UIControlStateHighlighted];
 	
 	// use normal push action for opening URL
 	[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];

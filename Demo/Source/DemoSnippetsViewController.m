@@ -8,12 +8,9 @@
 
 #import "DemoSnippetsViewController.h"
 #import "DemoTextViewController.h"
-<<<<<<< HEAD
 #import "ALVocabItem.h"
 #import "ALAttributeItem.h"
-=======
 #import "DemoAboutViewController.h"
->>>>>>> 39855289c354e9d61d6425d5efdada62d290b113
 
 // identifier for cell reuse
 NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseIdentifier";
