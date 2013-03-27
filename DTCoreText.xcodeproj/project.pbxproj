@@ -35,8 +35,6 @@
 		1203A24E1702B0780058FAC7 /* ALVocabItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2461702B0780058FAC7 /* ALVocabItemCell.xib */; };
 		1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2481702B0780058FAC7 /* ALVocabListViewController.m */; };
 		1203A2501702B0780058FAC7 /* ALVocabListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */; };
-		1203A2541702B2EA0058FAC7 /* DemoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2521702B2EA0058FAC7 /* DemoAboutViewController.m */; };
-		1203A2551702B2EA0058FAC7 /* DemoAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2531702B2EA0058FAC7 /* DemoAboutViewController.xib */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -787,9 +785,6 @@
 		1203A2471702B0780058FAC7 /* ALVocabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVocabListViewController.h; sourceTree = "<group>"; };
 		1203A2481702B0780058FAC7 /* ALVocabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVocabListViewController.m; sourceTree = "<group>"; };
 		1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALVocabListViewController.xib; sourceTree = "<group>"; };
-		1203A2511702B2EA0058FAC7 /* DemoAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoAboutViewController.h; sourceTree = "<group>"; };
-		1203A2521702B2EA0058FAC7 /* DemoAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoAboutViewController.m; sourceTree = "<group>"; };
-		1203A2531702B2EA0058FAC7 /* DemoAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoAboutViewController.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* RTDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1351,9 +1346,6 @@
 				1203A23D1702B0370058FAC7 /* Chinese */,
 				A788CA3314863EF100E1AFD9 /* CoreTextDemoAppDelegate.h */,
 				A788CA3414863EF100E1AFD9 /* CoreTextDemoAppDelegate.m */,
-				1203A2511702B2EA0058FAC7 /* DemoAboutViewController.h */,
-				1203A2521702B2EA0058FAC7 /* DemoAboutViewController.m */,
-				1203A2531702B2EA0058FAC7 /* DemoAboutViewController.xib */,
 				A788CA3514863EF100E1AFD9 /* DemoSnippetsViewController.h */,
 				A788CA3614863EF100E1AFD9 /* DemoSnippetsViewController.m */,
 				A788CA3714863EF100E1AFD9 /* DemoTextViewController.h */,
@@ -2053,7 +2045,6 @@
 				1203A2351702AFE80058FAC7 /* play.png in Resources */,
 				1203A24E1702B0780058FAC7 /* ALVocabItemCell.xib in Resources */,
 				1203A2501702B0780058FAC7 /* ALVocabListViewController.xib in Resources */,
-				1203A2551702B2EA0058FAC7 /* DemoAboutViewController.xib in Resources */,
 				A740368916E51B3A00ECCDE0 /* DemoAboutViewController.xib in Resources */,
 				A740369116E51C9800ECCDE0 /* About.html in Resources */,
 			);
@@ -2214,7 +2205,6 @@
 				1203A24C1702B0780058FAC7 /* ALVocabItem.m in Sources */,
 				1203A24D1702B0780058FAC7 /* ALVocabItemCell.m in Sources */,
 				1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */,
-				1203A2541702B2EA0058FAC7 /* DemoAboutViewController.m in Sources */,
 				A740368816E51B3A00ECCDE0 /* DemoAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
