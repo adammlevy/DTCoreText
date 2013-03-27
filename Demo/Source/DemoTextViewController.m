@@ -306,25 +306,17 @@
 
 - (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
 {
-	NSLog(@"viewForString: %@",string);
 	NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
 	
 	NSURL *URL = [attributes objectForKey:DTLinkAttribute];
 	NSString *identifier = [attributes objectForKey:DTGUIDAttribute];
-	
 	
 	DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
 	button.URL = URL;
 	button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
 	button.GUID = identifier;
 	
-	// get image with normal link text
-	//UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
-	//[button setImage:normalImage forState:UIControlStateNormal];
-	
-	// get image for highlighted link text
-	//UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
-	//[button setImage:highlightImage forState:UIControlStateHighlighted];
+	button.attributedString = string;
 	
 	// use normal push action for opening URL
 	[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
