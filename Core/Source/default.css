@@ -101,8 +101,9 @@ pre, xmp, plaintext, listing
 /* color:-webkit-link */
 a
 {
-	color:#0000EE; 
-	text-decoration:underline;
+	color:#0000EE;
+	/*text-decoration:underline;*/
+	/*don't use underline decoration*/
 }
 
 a:active {color:#FF0000;}  /* link while finger down */
