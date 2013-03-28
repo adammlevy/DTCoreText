@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSMutableSet *mediaPlayers;
 @property (nonatomic, strong) ALTranslationView *currentTranslationView;
 
+@property (nonatomic, strong) NSMutableDictionary *guids;
+
 @property (nonatomic, strong) UIPopoverController *vocabPopoverController;
 
 @end
@@ -75,6 +77,8 @@
 		
 		NSArray *toolbarItems = [NSArray arrayWithObjects:vocab, nil];
 		[self setToolbarItems:toolbarItems];
+		
+		_guids = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -315,6 +319,8 @@
 	button.URL = URL;
 	button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
 	button.GUID = identifier;
+	
+	[_guids setObject:string.string forKey:identifier];
 		
 	// get image with normal link text
 	UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
@@ -494,18 +500,20 @@
 
 - (void)linkPushed:(DTLinkButton *)button
 {
-//	NSLog(@"stringSelected: %@",button.attributedString.string);
+//	NSLog(@"GUID: %@",button.GUID);
+//	NSLog(@"stringSelected: %@",button.GUID);
 //	
-//	ALVocabItem *vocabItem = [_vocabulary objectForKey:button.attributedString.string];
-//	ALTranslationView *translation = [[ALTranslationView alloc] initWithVocabItem:vocabItem wordFrame:button.frame];
-//	[button addSubview:translation];
-//	
-//	// remove view before showing new one
-//	if (self.currentTranslationView)
-//		[self.currentTranslationView removeFromSuperview];
-//	
-//	self.currentTranslationView = translation;
-//	
+	NSString *word = [_guids objectForKey:button.GUID];
+	ALVocabItem *vocabItem = [_vocabulary objectForKey:word];
+	ALTranslationView *translation = [[ALTranslationView alloc] initWithVocabItem:vocabItem wordFrame:button.frame];
+	[self.view addSubview:translation];
+	[self.view bringSubviewToFront:translation];
+	// remove view before showing new one
+	if (self.currentTranslationView)
+		[self.currentTranslationView removeFromSuperview];
+	
+	self.currentTranslationView = translation;
+	
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

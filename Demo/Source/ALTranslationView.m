@@ -20,7 +20,7 @@
 @implementation ALTranslationView
 
 - (id)initWithVocabItem:(ALVocabItem *)vocab wordFrame:(CGRect)wordFrame {
-	CGRect frame = CGRectMake(0, -50, 250, 50);
+	CGRect frame = CGRectMake(wordFrame.origin.x, wordFrame.origin.y - 50 - wordFrame.size.height, 250, 50);
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.vocabItem = vocab;
