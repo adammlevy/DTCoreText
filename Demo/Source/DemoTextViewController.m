@@ -71,7 +71,7 @@
 		_segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		_segmentedControl.selectedSegmentIndex = 0;
 		[_segmentedControl addTarget:self action:@selector(_segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
-		self.navigationItem.titleView = _segmentedControl;	
+		//self.navigationItem.titleView = _segmentedControl;
 		
 		UIBarButtonItem *vocab = [[UIBarButtonItem alloc] initWithTitle:@"Vocab" style:UIBarButtonItemStyleBordered target:self action:@selector(vocabButtonPressed:)];
 		
@@ -495,6 +495,10 @@
 	return YES; // draw standard background
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	if (self.currentTranslationView)
+		[self.currentTranslationView removeFromSuperview];
+}
 
 #pragma mark Actions
 
