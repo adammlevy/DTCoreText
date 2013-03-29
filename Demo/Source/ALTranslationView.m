@@ -15,29 +15,40 @@
 @property (nonatomic, strong) UILabel *wordLabel;
 @property (nonatomic, strong) UILabel *translationLabel;
 @property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, assign) CGRect selectedWordFrame;
 @end
 
 @implementation ALTranslationView
 
 - (id)initWithVocabItem:(ALVocabItem *)vocab wordFrame:(CGRect)wordFrame {
-	CGRect frame = CGRectMake(wordFrame.origin.x, wordFrame.origin.y - 50 - wordFrame.size.height, 250, 50);
+	self.selectedWordFrame = wordFrame;
+	CGRect frame = CGRectMake(wordFrame.origin.x + 5, wordFrame.origin.y - 50 - wordFrame.size.height, 250, 50);
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.vocabItem = vocab;
 		
 		self.backgroundColor = [UIColor whiteColor];
 		
+		CGSize maxSize = CGSizeMake(self.frame.size.width, 9999);
+		UIFont *labelFont = [UIFont fontWithName:@"Helvetica" size:15];
+		CGSize wordLabelSize = [_vocabItem.word sizeWithFont:labelFont constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+		CGSize translationLabelSize = [_vocabItem.translation sizeWithFont:labelFont constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
+		
 		// add word label
-		CGRect wordLabelFrame = CGRectMake(5, 5, frame.size.width -10, 20);
+		CGRect wordLabelFrame = CGRectMake(5, 5, frame.size.width -10, wordLabelSize.height);
 		self.wordLabel = [[UILabel alloc] initWithFrame:wordLabelFrame];
+		self.wordLabel.font = labelFont;
+		self.wordLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
 		self.wordLabel.numberOfLines = 0;
 		self.wordLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		self.wordLabel.text = [NSString stringWithFormat:@"%@ %@", self.vocabItem.word, self.vocabItem.pinyin];
 		[self addSubview:_wordLabel];
 		
 		// add translation label
-		CGRect translationLabelFrame = CGRectMake(5, wordLabelFrame.origin.y + wordLabelFrame.size.height, wordLabelFrame.size.width, wordLabelFrame.size.height);
+		CGRect translationLabelFrame = CGRectMake(5, wordLabelFrame.origin.y + wordLabelFrame.size.height, wordLabelFrame.size.width, translationLabelSize.height);
 		self.translationLabel = [[UILabel alloc] initWithFrame:translationLabelFrame];
+		self.translationLabel.font = labelFont;
+		self.translationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
 		self.translationLabel.numberOfLines = 0;
 		self.translationLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		self.translationLabel.text = self.vocabItem.translation;
@@ -45,9 +56,21 @@
 		
 		// add play button
 		self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		CGRect playButtonRect = self.playButton.frame;
+		playButtonRect.size.width = 30;
+		playButtonRect.size.height = 30;
+		playButtonRect.origin.x = self.frame.size.width/2 - playButtonRect.size.width/2;
+		playButtonRect.origin.y = self.frame.size.height - playButtonRect.size.height - 5;
+		self.playButton.frame = playButtonRect;
 		[self.playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+		self.playButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
 		[self.playButton addTarget:self action:@selector(playButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:_playButton];
+		
+		CGRect frame = self.frame;
+		frame.size.height = wordLabelSize.height + translationLabelSize.height + _playButton.frame.size.height + 10;
+		frame.origin.y = wordFrame.origin.y - frame.size.height + 5;
+		self.frame = frame;
 	}
 	return self;
 }
@@ -63,37 +86,7 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	CGSize maxSize = CGSizeMake(self.frame.size.width, 9999);
-	CGSize wordLabelSize = [_vocabItem.word sizeWithFont:_wordLabel.font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
-	CGSize translationLabelSize = [_vocabItem.translation sizeWithFont:_translationLabel.font constrainedToSize:maxSize lineBreakMode:NSLineBreakByWordWrapping];
-	
-	// adjust word frame
-	CGRect wordLabelFrame = self.wordLabel.frame;
-	wordLabelFrame.size.height = wordLabelSize.height;
-	self.wordLabel.frame = wordLabelFrame;
-	
-	// adjust translation frame
-	CGRect transLabelFrame = self.translationLabel.frame;
-	transLabelFrame.size.height = translationLabelSize.height;
-	self.translationLabel.frame = transLabelFrame;
-	
-	// adjust play button frame
-	CGRect buttonRect = _playButton.frame;
-	buttonRect.size.width = 30;
-	buttonRect.size.height = 30;
-	_playButton.frame = buttonRect;
-	CGPoint buttonCenter = self.playButton.center;
-	buttonCenter.y = self.frame.size.height + buttonRect.size.height - buttonRect.size.height/2;
-	buttonCenter.x = self.center.x;
-	_playButton.center = buttonCenter;
-	
-	
-	// adjust view frame
-	CGRect frame = self.frame;
-	frame.size.height = wordLabelSize.height + translationLabelSize.height + _playButton.frame.size.height + 10;
-	self.frame = frame;
-	
-	
+
 	// set up layer
 	self.layer.borderWidth = 2;
 	self.layer.cornerRadius = 5;
