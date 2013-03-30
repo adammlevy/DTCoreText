@@ -35,6 +35,7 @@
 		1203A24E1702B0780058FAC7 /* ALVocabItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2461702B0780058FAC7 /* ALVocabItemCell.xib */; };
 		1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203A2481702B0780058FAC7 /* ALVocabListViewController.m */; };
 		1203A2501702B0780058FAC7 /* ALVocabListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */; };
+		120B41F717069BBC00816310 /* ALPageAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 120B41F617069BBC00816310 /* ALPageAppViewController.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -785,6 +786,8 @@
 		1203A2471702B0780058FAC7 /* ALVocabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALVocabListViewController.h; sourceTree = "<group>"; };
 		1203A2481702B0780058FAC7 /* ALVocabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALVocabListViewController.m; sourceTree = "<group>"; };
 		1203A2491702B0780058FAC7 /* ALVocabListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ALVocabListViewController.xib; sourceTree = "<group>"; };
+		120B41F517069BBB00816310 /* ALPageAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALPageAppViewController.h; sourceTree = "<group>"; };
+		120B41F617069BBC00816310 /* ALPageAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALPageAppViewController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* RTDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1354,6 +1357,8 @@
 				A740368516E51B3A00ECCDE0 /* DemoAboutViewController.h */,
 				A740368616E51B3A00ECCDE0 /* DemoAboutViewController.m */,
 				A740368716E51B3A00ECCDE0 /* DemoAboutViewController.xib */,
+				120B41F517069BBB00816310 /* ALPageAppViewController.h */,
+				120B41F617069BBC00816310 /* ALPageAppViewController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2206,6 +2211,7 @@
 				1203A24D1702B0780058FAC7 /* ALVocabItemCell.m in Sources */,
 				1203A24F1702B0780058FAC7 /* ALVocabListViewController.m in Sources */,
 				A740368816E51B3A00ECCDE0 /* DemoAboutViewController.m in Sources */,
+				120B41F717069BBC00816310 /* ALPageAppViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

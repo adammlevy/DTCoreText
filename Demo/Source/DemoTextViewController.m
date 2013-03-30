@@ -143,8 +143,16 @@
 	_iOS6View.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
 	_iOS6View.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:_iOS6View];
+	
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+	[self.view addGestureRecognizer:tapGesture];
 }
 
+
+- (void)viewTapped:(UITapGestureRecognizer *)sender {
+	if (self.currentTranslationView)
+		[self.currentTranslationView removeFromSuperview];
+}
 
 - (NSAttributedString *)_attributedStringForSnippetUsingiOS6Attributes:(BOOL)useiOS6Attributes
 {
@@ -493,11 +501,6 @@
 	}
 	
 	return YES; // draw standard background
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	if (self.currentTranslationView)
-		[self.currentTranslationView removeFromSuperview];
 }
 
 #pragma mark Actions

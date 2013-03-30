@@ -19,5 +19,7 @@
 
 @property (nonatomic, strong) NSDictionary *vocabulary;
 
+@property (nonatomic, strong) NSDictionary *rowSnippet;
+
 
 @end

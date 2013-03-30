@@ -7,6 +7,7 @@
 //
 
 @class DemoTextViewController;
+@class ALPageAppViewController;
 
 @interface CoreTextDemoAppDelegate : NSObject <UIApplicationDelegate> 
 {
@@ -15,5 +16,6 @@
 }
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) ALPageAppViewController *pageAppViewController;
 
 @end
